@@ -1,0 +1,112 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container card p-2">
+    <nav class="my-2">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Home</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-chng-pass-tab" data-toggle="tab" href="#nav-chng-pass" role="tab"
+                aria-controls="nav-chng-pass" aria-selected="false">Change Password</a>
+        </div>
+    </nav>
+
+    <div class="row m-0">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-2">
+            <div class="card p-1">
+                <img src='{{ user.profile.profile_img.url }}' width="100%" height="auto" alt="img" class="">
+            </div>
+            <div class="my-2">
+                <h3 class="m-0 p-0">{{ user.first_name }} {{ user.last_name }}</h3>
+                <h5 class="text-muted font-weight-normal m-0 p-0">{{ user.username}}</h5>
+            </div>
+            <div class="edit-btn text-left my-2">
+                <button class="btn btn-light border btn-sm font-weight-normal"><i class="fa fa-edit"></i> Edit profile</button>
+            </div>
+            <div class="contact">
+                <span><i class="fa fa-map-marker"></i></span>
+                <span class="font-weight-normal m-0 p-0">{{ user.profile.current_address }}</span><br>
+                <span><i class="fa fa-envelope-o"></i></span>
+                <span><a href="#" class="font-weight-normal m-0 p-0">{{ user.email}}</a></span>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 p-2">
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                   
+                    <h3>Recent</h3><hr>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small>3 days ago</small>
+                          </div>
+                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                          <small>Donec id elit non mi porta.</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small class="text-muted">3 days ago</small>
+                          </div>
+                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                          <small class="text-muted">Donec id elit non mi porta.</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small class="text-muted">3 days ago</small>
+                          </div>
+                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                          <small class="text-muted">Donec id elit non mi porta.</small>
+                        </a>
+                      </div>
+
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                   <div class="container-fluid">
+                   <h3>My Profile</h3><hr>
+
+                    <p><b>Username</b> : {{ user.username}}</p>
+
+                    <p><b>Name</b> : {{ user.first_name }} {{ user.last_name }}</p>
+
+                    <p><b>Mobile No.</b> : {{ user.profile.phone_no }}</p>
+
+                    <p><b>Email</b> : {{ user.email }}</p>
+                   </div>
+                </div>
+                <div class="tab-pane fade" id="nav-chng-pass" role="tabpanel" aria-labelledby="nav-chng-pass-tab">
+                    <div class="container-fluid">
+                        <h3>Change Password</h3><hr>
+                    <form>
+                        <div class="form-group">
+                          <label for="exampleInputCpass">Current Password</label>
+                          <input type="text" class="form-control" id="exampleInputCpass" aria-describedby="Cpass">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">New Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Confrim Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

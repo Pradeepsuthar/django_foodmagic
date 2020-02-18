@@ -1,0 +1,11 @@
+foodmagic Requirments
+Package    Version
+---------- -------
+asgiref    3.2.3
+Django     3.0.3
+Pillow     7.0.0
+pip        20.0.2
+pytz       2019.3
+setuptools 45.2.0
+sqlparse   0.3.0
+wheel      0.34.2

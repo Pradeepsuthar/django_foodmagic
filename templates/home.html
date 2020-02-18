@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<!-- Start Category -->
+{% block cetagory %}
+<div class="nav-scroller shadow-sm">
+  <nav class="nav d-flex justify-content-between sticky-top">
+    {% for cet in all_cetagories %}
+    <a class="p-2 text-muted text-decoration-none" href="#">{{cet.cetagory_name}}</a>
+    {% endfor %}
+  </nav>
+</div>
+{% endblock %}
+<!-- End Category -->
+
+
+
+
+<!-- Start Product List -->
+{% block content %}
+<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-2 my-3">
+
+  <div class="p-2">
+    {% for cet in all_cetagories %}
+      {% if cet.cetagory_name == 'Pizza' %}
+      <h5 class="text-muted">{{cet.id}}. {{cet.cetagory_name}}</h5><hr>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://s21425.pcdn.co/wp-content/uploads/2013/05/veg-300x259.jpg" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="text-left border-top pt-2">
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://s21425.pcdn.co/wp-content/uploads/2013/05/veg-300x259.jpg" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="text-left border-top pt-2">
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://s21425.pcdn.co/wp-content/uploads/2013/05/veg-300x259.jpg" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="text-left border-top pt-2">
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://pngimage.net/wp-content/uploads/2018/06/non-veg-symbol-png-1.png" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="d-flex bd-highlight border-top pt-2">
+            <div class="flex-fill bd-highlight">
+              <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+            </div>
+            <div class="flex-fill bd-highlight text-right m-0">
+              <button type="button" class="btn btn-outline-success btn-sm text-uppercase">+</button>
+              <span class="border">0</span>
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">-</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://s21425.pcdn.co/wp-content/uploads/2013/05/veg-300x259.jpg" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="text-left border-top pt-2">
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4">
+      <div class="card rounded-0">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&w=1000&q=80" class="card-img-top" alt="..." width="100%" height="100px">
+        <div class="card-body p-2">
+          <h5 class="card-title"><span><img src="https://pngimage.net/wp-content/uploads/2018/06/non-veg-symbol-png-1.png" alt="veg" width="10px" height="10px"></span> Card title</h5>
+          <p class="card-text description text-muted mb-2">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          <div class="d-flex bd-highlight p-2 border-top">
+            <div class="flex-fill bd-highlight text-success font-weight-bold">₹395</div>
+          </div>
+          <div class="d-flex bd-highlight border-top pt-2">
+            <div class="flex-fill bd-highlight">
+              <button type="button" class="btn btn-outline-success btn-sm text-uppercase">Add to Cart</button>
+            </div>
+            <div class="flex-fill bd-highlight text-right m-0">
+              <button type="button" class="btn btn-outline-success btn-sm text-uppercase">+</button>
+              <span class="border">0</span>
+            <button type="button" class="btn btn-outline-success btn-sm text-uppercase">-</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</div>
+
+{% endblock %}
+<!-- End Product List -->
+
+
+<!-- Start Cart List -->
+{% block cart %}
+<div class="col-4 p-3 d-none d-lg-block">
+    <div class="card p-3 rounded-0">
+      <h4 class="text-muted">YOUR CART</h4>
+      <!-- <p class="text-muted">Please add some items from the menu.</p> -->
+      <hr>
+      
+      <!-- If cart is empty -->
+      <!-- <img src="{% static 'images/location_empty.png' %}"> -->
+      <!-- else -->
+      <div class="list-group">
+        {% for cet in all_cetagories %}
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{cet.cetagory_name}}</h5>
+            <small class="font-weight-bold">₹395.00</small>
+          </div>
+          <small class="text-success">₹25 Save</small>
+        </a>
+        {% endfor %}
+
+        <!-- <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Cheese Burger</h5>
+            <small class="font-weight-bold">₹480.00</small>
+          </div>
+          <small class="text-success">30% OFF</small>
+        </a> -->
+      </div>
+      <div class="card text-success p-2 my-2 text-right">
+        <b>Total : ₹875.00</b>
+      </div>
+      <button class="btn btn-dark my-3 border">Continue</button>
+
+
+      
+    </div>
+</div>
+
+{% endblock %}
+<!-- End Cart List -->

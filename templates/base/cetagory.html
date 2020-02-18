@@ -1,0 +1,9 @@
+{% block cetagory %}
+<div class="nav-scroller shadow-sm">
+    <nav class="nav d-flex justify-content-between sticky-top">
+      {% for cet in all_cetagories %}
+      <a class="p-2 text-muted text-decoration-none" href="#">{{cet.cetagory_name}}</a>
+      {% endfor %}
+    </nav>
+  </div>
+{% endblock %}
