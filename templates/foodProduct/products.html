@@ -37,7 +37,7 @@
       </ul>
     </div>
     {% else %}
-    {% if search|length > 1 %}
+    {% if search|length >= 1 %}
     <span>
       <h6 class="text-muted font-weight-bold"><i class="fa fa-sliders"></i> FILTER</h6>
       <p class="text-muted">{{ products|length }} found for "{{search.strip}}".</p>
