@@ -71,7 +71,9 @@
         <div class="register mt-3 text-center">
           <a href="../register" class="text-primary border-0 bg-white text-decoration-none">Register Now</a>
         </div>
-        <p class="mt-3 mb-3 text-muted text-center">&copy; Copyright <b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="80px" height="20px"></b>. All Rights Reserved</p>
+        <p class="mt-3 mb-3 text-muted text-center">&copy; Copyright <b><img
+              src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="80px" height="20px"></b>. All Rights
+          Reserved</p>
       </form>
       <!-- End User Login -->
 
@@ -79,21 +81,21 @@
   </div>
 
 
-      {% for message in messages %}
-        <input class="d-none" type="text" id="message-tags" value="{{ message.tags }}">
-        <input class="d-none" type="text" id="message" value="{{ message }}">
-      {% endfor %}
+  {% for message in messages %}
+  <input class="d-none" type="text" id="message-tags" value="{{ message.tags }}">
+  <input class="d-none" type="text" id="message" value="{{ message }}">
+  {% endfor %}
 
 
 
   <!-- Optional JavaScript -->
   <script>
-    function showMessage(){
+    function showMessage() {
       var message_tag = document.getElementById('message-tags').value;
       var message = document.getElementById('message').value;
       swal("", message, message_tag);
     }
-      
+
   </script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -68,14 +68,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/myaccount/{{ user.profile.id }}">Account</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
       </ul>
       <form method="get" action="/search" class="input-group w-50 border">
 
         <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 input-field px-2"
-          name="search" value="{{ request.GET.search }}">
+          name="search" value="{{ request.GET.search }}" required>
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary px-4 rounded-0 border-0 bg-light" type="submit" id="button-addon2"><i

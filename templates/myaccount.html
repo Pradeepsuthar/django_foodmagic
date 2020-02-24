@@ -3,124 +3,139 @@
 {% block content %}
 
 <div class="container-fluid card p-2 border-0">
-    <nav class="my-2">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true">Cart</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Profile</a>
-            <a class="nav-item nav-link" id="nav-chng-pass-tab" data-toggle="tab" href="#nav-chng-pass" role="tab"
-                aria-controls="nav-chng-pass" aria-selected="false">Change Password</a>
+  <nav class="my-2">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active text-muted" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+        aria-controls="nav-home" aria-selected="true">Cart</a>
+      <a class="nav-item nav-link text-muted" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+        aria-controls="nav-profile" aria-selected="false"><i class="fa fa-edit"></i> Edit profile</a>
+      <a class="nav-item nav-link text-muted" id="nav-chng-pass-tab" data-toggle="tab" href="#nav-chng-pass" role="tab"
+        aria-controls="nav-chng-pass" aria-selected="false">Change Password</a>
+    </div>
+  </nav>
+
+  <div class="row m-0">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-1">
+      <div class="card p-0" style="width: 100%;height: 250px;">
+        {% if user.profile.profile_img %}
+        <img src='{{ user.profile.profile_img.url }}' width="100%" height="250px" alt="Avtar"
+          class="mx-auto d-block border rounded">
+        {% else %}
+        <img src='https://www.012global.com/Account/Slices/user-anonymous.png' width="100%" height="250px" alt="Avtar"
+          class="mx-auto d-block border rounded">
+        {% endif %}
+      </div>
+      <div class="my-2">
+        <h5 class="m-0 p-0">{{ user.first_name }} {{ user.last_name }}</h5>
+        <h6 class="text-muted font-weight-normal m-0 p-0">{{ user.username}}</h6>
+      </div>
+      <div class="edit-btn text-left my-2">
+        <a class="btn btn-light border btn-sm font-weight-normal" href="/logout">Logout</a>
+      </div>
+      <div class="contact">
+        <span>
+          <i class="fa fa-map-marker">
+            <span class="font-weight-light m-0 p-0">{{ user.profile.current_address }}</span>
+          </i>
+        </span>
+        <br>
+        <span>
+          <i class="fa fa-envelope-o">
+            <a href="#" class="font-weight-light m-0 p-0">{{ user.email}}</a>
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 p-2">
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+          <div class="d-flex w-100 justify-content-between">
+            <h4>YOUR CART </h4>
+            <a href="/" class="clear-cart">Clear</a>
+          </div>
+          <hr>
+          <div class="show-cart list-group">
+
+          </div>
+          <div class="card text-success p-1 my-2 text-right">
+            <b>Total : ₹<span class="total-cart"></span>.00</b>
+          </div>
+
         </div>
-    </nav>
-
-    <div class="row m-0">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-2">
-            <div class="card p-1">
-              {% if user.profile.profile_img %}
-                <img src='{{ user.profile.profile_img.url }}' width="200px" height="200px" alt="Avtar" class="mx-auto d-block">
-                {% else %}
-                <img src='https://www.012global.com/Account/Slices/user-anonymous.png' width="200px" height="200px" alt="img" class="mx-auto d-block">
-              {% endif %}  
-            </div>
-            <div class="my-2">
-                <h3 class="m-0 p-0">{{ user.first_name }} {{ user.last_name }}</h3>
-                <h5 class="text-muted font-weight-normal m-0 p-0">{{ user.username}}</h5>
-            </div>
-            <div class="edit-btn text-left my-2">
-                <button class="btn btn-light border btn-sm font-weight-normal"><i class="fa fa-edit"></i> Edit profile</button>
-            </div>
-            <div class="contact">
-                <span><i class="fa fa-map-marker"></i></span>
-                <span class="font-weight-normal m-0 p-0">{{ user.profile.current_address }}</span><br>
-                <span><i class="fa fa-envelope-o"></i></span>
-                <span><a href="#" class="font-weight-normal m-0 p-0">{{ user.email}}</a></span>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 p-2">
-
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                   
-                    <div class="d-flex w-100 justify-content-between">
-                      <h4>YOUR CART </h4>
-                      <a href="/" class="clear-cart">Clear</a>
-                    </div>
-                    <hr>
-                    <div class="show-cart list-group">
-                
-                    </div>
-                    <div class="card text-success p-1 my-2 text-right">
-                      <b>Total : ₹<span class="total-cart"></span>.00</b>
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  <div class="container-fluid">
-                    <h3>Edit Profile</h3><hr>
-                    <form action="/editprofile/" method="POST">
-                      {% csrf_token %}
-                        <!-- <div class="form-group">
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="container-fluid">
+            <h3>Edit Profile <i class="fa fa-edit"></i></h3>
+            <hr>
+            <form action="/editprofile/" method="POST">
+              {% csrf_token %}
+              <!-- <div class="form-group">
                           <label for="exampleFormControlFile1">Profile Image</label>
                           <input type="file" class="form-control-file" id="exampleFormControlFile1" name="profile_img">
                         </div> -->
-                        <div class="form-group">
-                          <label for="exampleInputCpass">Username</label>
-                          <input type="text" class="form-control" value="{{ user.username}}" name="username" readonly>
-                        </div>
-                        <label for="exampleInputPassword1">Name</label>
-                        <div class="row form-group">
-                          <div class="col">
-                            <input type="text" class="form-control" value="{{ user.first_name }}" name="edit_fname">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" value="{{ user.last_name }}" name="edit_lname">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Mobile Number</label>
-                          <input type="text" class="form-control" value="{{ user.profile.phone_no }}" name="edit_phone_no">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Email Address</label>
-                          <input type="text" class="form-control" value="{{ user.email }}" name="edit_email">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Address</label>
-                          <input type="text" class="form-control" value="{{ user.profile.current_address }}" name="edit_current_address">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </form>
-                    </div>
-
-
+              <div class="form-group">
+                <label for="exampleInputCpass">Username</label>
+                <input type="text" class="form-control rounded-0" value="{{ user.username}}" name="username" readonly>
+              </div>
+              <label for="exampleInputPassword1">Name</label>
+              <div class="row form-group">
+                <div class="col">
+                  <input type="text" class="form-control rounded-0" value="{{ user.first_name }}" name="edit_fname"
+                    required>
                 </div>
-                <div class="tab-pane fade" id="nav-chng-pass" role="tabpanel" aria-labelledby="nav-chng-pass-tab">
-                    <div class="container-fluid">
-                        <h3>Change Password</h3><hr>
-                    <form action="/changePassword/" method="POST">
-                      {% csrf_token %}
-                        <div class="form-group">
-                          <label for="exampleInputCpass">Current Password</label>
-                          <input type="text" class="form-control" id="exampleInputCpass" name="cpass">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">New Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" name="pass1">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Confrim Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" name="pass2">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                      </form>
-                    </div>
-
+                <div class="col">
+                  <input type="text" class="form-control rounded-0" value="{{ user.last_name }}" name="edit_lname"
+                    required>
                 </div>
-            </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Mobile Number</label>
+                <input type="text" class="form-control rounded-0" value="{{ user.profile.phone_no }}"
+                  name="edit_phone_no" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Email Address</label>
+                <input type="text" class="form-control rounded-0" value="{{ user.email }}" name="edit_email" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Address</label>
+                <input type="text" class="form-control rounded-0" value="{{ user.profile.current_address }}"
+                  name="edit_current_address" required>
+              </div>
+              <button type="submit" class="btn btn-warning rounded-0 btn-md text-white">Save</button>
+            </form>
+          </div>
+
 
         </div>
+        <div class="tab-pane fade" id="nav-chng-pass" role="tabpanel" aria-labelledby="nav-chng-pass-tab">
+          <div class="container-fluid">
+            <h3>Change Password</h3>
+            <hr>
+            <form action="/changePassword/" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputCpass">Current Password</label>
+                <input type="text" class="form-control rounded-0" id="exampleInputCpass" name="cpass" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">New Password</label>
+                <input type="password" class="form-control rounded-0" id="exampleInputPassword1" name="pass1" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Confrim Password</label>
+                <input type="password" class="form-control rounded-0" id="exampleInputPassword1" name="pass2" required>
+              </div>
+              <button type="submit" class="btn btn-warning rounded-0 btn-md text-white">Save</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 

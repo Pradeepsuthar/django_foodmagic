@@ -24,20 +24,30 @@
   <div class="p-0 d-flex justify-content-between">
     <!-- Search items -->
     {% if products|length < 1 %}
-      <div class="container p-2">
-        <p class="font-weight-bold">No Search Results :-</p><hr>
-        <p>Your search - <span class="font-weight-bold">{{search}}</span> - did not match any products.</p>
-        <p>Suggestions:</p>
-        <ul>
-          <li>Make sure that all words are spelled correctly.</li>
-          <li>Try different keywords.</li>
-          <li>Try more general keywords.</li>
-        </ul>    
-      </div>
-      {% else %}
-        <h6 class="text-muted font-weight-bold"><i class="fa fa-sliders"></i> FILTER</h6>
+    <div class="container p-2">
+      <p class="font-weight-bold">No Search Results :-</p>
+      <hr>
+      <p>Your search - <span class="font-weight-bold">{{search}}</span> - is not available sorry please search another
+        item.</p>
+      <p>Suggestions:</p>
+      <ul>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+      </ul>
+    </div>
+    {% else %}
+    {% if search|length > 1 %}
+    <span>
+      <h6 class="text-muted font-weight-bold"><i class="fa fa-sliders"></i> FILTER</h6>
+      <p class="text-muted">{{ products|length }} found for "{{search.strip}}".</p>
+    </span>
+    {% else %}
+    <h6 class="text-muted font-weight-bold">All Products</h6>
+    {% endif %}
     {% endif%}
   </div>
+
   <hr>
   <div class="row scroll">
     {% for product in products %}
@@ -45,17 +55,17 @@
       <div class="card border-0 rounded-0 card-hvr">
         <img src="{{product.product_img.url}}" class="img-responsive" alt="product_img" width="100%" height="150px">
         <div class="card-body p-2">
-          
+
           {% if product.is_veg %}
-            <h5 class="card-title m-0">
-                <span><img class="mr-2" src="{% static 'images/veg.png' %}" alt="veg" width="12px" height="12px"></span> 
-                <span>{{product.product_name.title}}</span>
-            </h5>
-            {% else %}
-            <h5 class="card-title mb-0">
-                <span><img class="mr-2" src="{% static 'images/non-veg.png' %}" alt="veg" width="12px" height="12px"></span> 
-                <span>{{product.product_name.title}}</span>
-            </h5>
+          <h5 class="card-title m-0">
+            <span><img class="mr-2" src="{% static 'images/veg.png' %}" alt="veg" width="12px" height="12px"></span>
+            <span>{{product.product_name.title}}</span>
+          </h5>
+          {% else %}
+          <h5 class="card-title mb-0">
+            <span><img class="mr-2" src="{% static 'images/non-veg.png' %}" alt="veg" width="12px" height="12px"></span>
+            <span>{{product.product_name.title}}</span>
+          </h5>
           {% endif %}
 
           <!-- <p class="card-text description text-muted my-0 text-truncate"><b>From</b> : {{product.created_by}}</p> -->
@@ -73,8 +83,9 @@
               <span><i class="fa fa-star"></i></span>
             </div> -->
             <div class="bd-highlight">
-              <button type="button" class="btn btn-outline-light border rounded-0 text-success btn-sm text-uppercase add-to-cart"
-              data-name="{{product.product_name}}" data-price="{{product.price}}">Add</button>
+              <button type="button"
+                class="btn btn-outline-light border rounded-0 text-success btn-sm text-uppercase add-to-cart"
+                data-name="{{product.product_name}}" data-price="{{product.price}}">Add</button>
             </div>
           </div>
           <!-- <div class="text-left border-top pt-2">
@@ -105,11 +116,12 @@
     <!-- else -->
     <div class="show-cart">
     </div>
-    
+
     <div class="card text-success p-1 my-2 text-right">
       <b>Total : ₹<span class="total-cart"></span>.00</b>
     </div>
-    <button class="btn btn-dark my-0 border rounded-0" data-toggle="modal" data-target="#staticBackdrop">Order now</button>
+    <button class="btn btn-dark my-0 border rounded-0" data-toggle="modal" data-target="#staticBackdrop">Order
+      now</button>
   </div>
 </div>
 {% endblock %}

@@ -1,26 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from .models import Profile, Cetagory, Product, Order
+from .models import Profile, Cetagory, Product, Restaurant, Order
 from django.contrib.sessions.models import Session
 from django.views.generic import TemplateView
-from django.db.models import Q
 
 # Default Home Page
 def index(request):
     if request.session.has_key('is_login'):
         return redirect('/products/')
     else:
-        return render(request, 'index.html')
+        return render(request, 'login.html')
 
 # Login exists user  
 def loginUser(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
         user = auth.authenticate(username=username, password=password)
-
         if user is not None:
             request.session['is_login'] = True
             auth.login(request, user)
@@ -65,19 +62,8 @@ def register(request):
     else:
         return render(request, 'register.html')
 
-# Dashboard for authenticated users
-def home(request):
-    Cetagory_list = Cetagory.objects.all()
-    if request.session.has_key('is_login'):
-        return render(request, 'home.html',{'all_cetagories':Cetagory_list})
-    else:
-        return redirect('/login/')
 
-# Logout user from dashboard
-def logout(request):
-    auth.logout(request)
-    return redirect('/login/')
-
+# MyAccount
 class MyAccount(TemplateView):
     template_name = "myaccount.html"
     def get_context_data(self, **kwargs):
@@ -85,15 +71,18 @@ class MyAccount(TemplateView):
         context["profile"] = Profile.objects.all()
         return context
 
-class ProductView(TemplateView):
-    model = Product
-    template_name = "foodProduct/products.html"
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        context["products"] = Product.objects.order_by("-id")
-        context["all_cetagories"] = Cetagory.objects.all()
-        return context 
 
+# Product view
+def ProductView(request):
+    if request.session.has_key('is_login'):
+        products = Product.objects.order_by("-id")
+        all_cetagories = Cetagory.objects.all()
+        return render(request, 'foodProduct/products.html',{'products':products,'all_cetagories':all_cetagories})
+    else:
+        return redirect('/login/')
+
+
+# Search
 def search(request):
     if request.session.has_key('is_login'):
         search_item = request.GET.get('search')
@@ -108,6 +97,8 @@ def search(request):
     else:
         return redirect('/login/')
 
+
+# Checkout
 def checkout(request):
     if request.session.has_key('is_login'):
         if request.method=="POST":
@@ -132,6 +123,8 @@ def checkout(request):
     else:
         return redirect('/login/')
 
+
+# Edit Profile
 def editProfile(request):
     if request.session.has_key('is_login'):
         if request.method=='POST':
@@ -159,6 +152,7 @@ def editProfile(request):
         return redirect('/login/')
     
 
+# Change Password
 def changePassword(request):
     if request.session.has_key('is_login'):
         if request.method=='POST':
@@ -177,5 +171,14 @@ def changePassword(request):
                 messages.info(request, 'Your password and confrim password are not match.')
 
             return render(request, 'myaccount.html')
+    else:
+        return redirect('/login/')
+
+
+# Logout user from dashboard
+def logout(request):
+    if request.session.has_key('is_login'):
+        auth.logout(request)
+        return redirect('/login/')
     else:
         return redirect('/login/')

@@ -32,11 +32,13 @@
                 font-size: 3.5rem;
             }
         }
+
         .scroll {
             max-height: 50vh;
             overflow-y: auto;
             overflow-x: hidden;
-    }
+        }
+
         .scroll::-webkit-scrollbar {
             width: 0px;
         }
@@ -95,7 +97,7 @@
                             Please enter a valid email address for shipping updates.
                         </div>
                     </div>
-                    
+
                     <!-- <p id="myJSON"></p> -->
 
                     <div class="row">
@@ -213,7 +215,7 @@
                             <label class="custom-control-label" for="case">Case on Delivery</label>
                         </div>
                     </div>
-        
+
                     <hr class="mb-4">
                     <button class="btn btn-warning rounded-0 btn-lg btn-block" type="submit">Continue to
                         checkout</button>
@@ -239,13 +241,13 @@
     <!-- Optional JavaScript -->
     <script src="{% static 'js/cart.js' %}"></script>
     <script>
-        console.log("My cart is : ",cart)
-        var JSONitems  = JSON.stringify(cart);
+        console.log("My cart is : ", cart)
+        var JSONitems = JSON.stringify(cart);
         document.getElementById("myJSON").innerHTML = JSONitems;
 
-        console.log("Json data : ",JSONitems)
-        console.log("Type of Json data : ",typeof(JSONitems))
-        console.log("Type of cart data : ",typeof(cart))
+        console.log("Json data : ", JSONitems)
+        console.log("Type of Json data : ", typeof (JSONitems))
+        console.log("Type of cart data : ", typeof (cart))
     </script>
     {% if order_placed %}
     <script>
