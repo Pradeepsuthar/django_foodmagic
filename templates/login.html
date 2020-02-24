@@ -7,6 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="{% static 'images/favicon.png' %}" rel="icon" />
+  <!-- Favicons -->
+  <link href="{% static 'images/favicon-foodmagic.png' %}" rel="icon" />
+
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -43,9 +46,14 @@
 <body onload="showMessage()">
   <div class="centerItem mt-5">
     <section class="jumbotron text-center mb-0">
-      <h2 class="mb-0 site-logo"><a href="/" class="text-decoration-none text-primary">Food<strong
-            class="font-weight-bold text-success">Magic</strong> </a>
+      <h2 class="mb-0 site-logo">
+        <a href="/" class="text-decoration-none">
+          <img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="200px" height="50px">
+        </a>
       </h2>
+      <!-- <h2 class="mb-0 site-logo"><a href="/" class="text-decoration-none text-primary">Food<strong
+            class="font-weight-bold text-success">Magic</strong> </a>
+      </h2> -->
     </section>
     <main role="main" class="inner cover mb-0 mt-0">
       <!-- User Login -->
@@ -58,13 +66,12 @@
 
         <input type="password" class="form-control mt-3" placeholder="Password" name="password" required>
 
-        <button class="btn-block btn btn-sm btn-outline-secondary" type="submit" name="login">Login</button>
+        <button class="btn-block btn btn-sm btn-outline" type="submit" name="login">Login</button>
 
         <div class="register mt-3 text-center">
           <a href="../register" class="text-primary border-0 bg-white text-decoration-none">Register Now</a>
         </div>
-        <p class="mt-3 mb-3 text-muted text-center">&copy; Copyright <b><span class="text-primary">Food</span><span
-              class="text-success">Magic</span></b>. All Rights Reserved</p>
+        <p class="mt-3 mb-3 text-muted text-center">&copy; Copyright <b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="80px" height="20px"></b>. All Rights Reserved</p>
       </form>
       <!-- End User Login -->
 
@@ -86,7 +93,7 @@
       var message = document.getElementById('message').value;
       swal("", message, message_tag);
     }
-       
+      
   </script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

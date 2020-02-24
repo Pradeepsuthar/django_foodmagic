@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<div class="container card p-2">
+<div class="container-fluid card p-2 border-0">
     <nav class="my-2">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true">Home</a>
+                aria-controls="nav-home" aria-selected="true">Cart</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                 aria-controls="nav-profile" aria-selected="false">Profile</a>
             <a class="nav-item nav-link" id="nav-chng-pass-tab" data-toggle="tab" href="#nav-chng-pass" role="tab"
@@ -17,7 +17,11 @@
     <div class="row m-0">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-2">
             <div class="card p-1">
-                <img src='{{ user.profile.profile_img.url }}' width="100%" height="auto" alt="img" class="">
+              {% if user.profile.profile_img %}
+                <img src='{{ user.profile.profile_img.url }}' width="200px" height="200px" alt="Avtar" class="mx-auto d-block">
+                {% else %}
+                <img src='https://www.012global.com/Account/Slices/user-anonymous.png' width="200px" height="200px" alt="img" class="mx-auto d-block">
+              {% endif %}  
             </div>
             <div class="my-2">
                 <h3 class="m-0 p-0">{{ user.first_name }} {{ user.last_name }}</h3>
@@ -38,63 +42,75 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                    
-                    <h3>Recent</h3><hr>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small>Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                      </div>
+                    <div class="d-flex w-100 justify-content-between">
+                      <h4>YOUR CART </h4>
+                      <a href="/" class="clear-cart">Clear</a>
+                    </div>
+                    <hr>
+                    <div class="show-cart list-group">
+                
+                    </div>
+                    <div class="card text-success p-1 my-2 text-right">
+                      <b>Total : ₹<span class="total-cart"></span>.00</b>
+                    </div>
 
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                   <div class="container-fluid">
-                   <h3>My Profile</h3><hr>
+                  <div class="container-fluid">
+                    <h3>Edit Profile</h3><hr>
+                    <form action="/editprofile/" method="POST">
+                      {% csrf_token %}
+                        <!-- <div class="form-group">
+                          <label for="exampleFormControlFile1">Profile Image</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="profile_img">
+                        </div> -->
+                        <div class="form-group">
+                          <label for="exampleInputCpass">Username</label>
+                          <input type="text" class="form-control" value="{{ user.username}}" name="username" readonly>
+                        </div>
+                        <label for="exampleInputPassword1">Name</label>
+                        <div class="row form-group">
+                          <div class="col">
+                            <input type="text" class="form-control" value="{{ user.first_name }}" name="edit_fname">
+                          </div>
+                          <div class="col">
+                            <input type="text" class="form-control" value="{{ user.last_name }}" name="edit_lname">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Mobile Number</label>
+                          <input type="text" class="form-control" value="{{ user.profile.phone_no }}" name="edit_phone_no">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Email Address</label>
+                          <input type="text" class="form-control" value="{{ user.email }}" name="edit_email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Address</label>
+                          <input type="text" class="form-control" value="{{ user.profile.current_address }}" name="edit_current_address">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                    </div>
 
-                    <p><b>Username</b> : {{ user.username}}</p>
 
-                    <p><b>Name</b> : {{ user.first_name }} {{ user.last_name }}</p>
-
-                    <p><b>Mobile No.</b> : {{ user.profile.phone_no }}</p>
-
-                    <p><b>Email</b> : {{ user.email }}</p>
-                   </div>
                 </div>
                 <div class="tab-pane fade" id="nav-chng-pass" role="tabpanel" aria-labelledby="nav-chng-pass-tab">
                     <div class="container-fluid">
                         <h3>Change Password</h3><hr>
-                    <form>
+                    <form action="/changePassword/" method="POST">
+                      {% csrf_token %}
                         <div class="form-group">
                           <label for="exampleInputCpass">Current Password</label>
-                          <input type="text" class="form-control" id="exampleInputCpass" aria-describedby="Cpass">
+                          <input type="text" class="form-control" id="exampleInputCpass" name="cpass">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">New Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1">
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="pass1">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Confrim Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1">
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="pass2">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                       </form>

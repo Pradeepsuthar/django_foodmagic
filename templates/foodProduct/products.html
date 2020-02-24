@@ -1,0 +1,116 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+<!-- Start Category -->
+{% block cetagory %}
+<div class="nav-scroller shadow-sm">
+  <nav class="nav d-flex justify-content-between p-2">
+    <div class="border bg-dark py-0 px-2" style="border-radius: 30px;">
+      <a class="text-white text-decoration-none" href="#">All</a>
+    </div>
+    {% for cet in all_cetagories %}
+    <div class="border bg-light py-0 px-2 mx-1" style="border-radius: 30px;">
+      <a class="text-muted text-decoration-none" href="#">{{cet.cetagory_name}}</a>
+    </div>
+    {% endfor %}
+  </nav>
+</div>
+{% endblock %}
+<!-- End Category -->
+
+<!-- Start Product List -->
+{% block content %}
+<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 p-2 ">
+  <div class="p-0 d-flex justify-content-between">
+    <!-- Search items -->
+    {% if products|length < 1 %}
+      <div class="container p-2">
+        <p class="font-weight-bold">No Search Results :-</p><hr>
+        <p>Your search - <span class="font-weight-bold">{{search}}</span> - did not match any products.</p>
+        <p>Suggestions:</p>
+        <ul>
+          <li>Make sure that all words are spelled correctly.</li>
+          <li>Try different keywords.</li>
+          <li>Try more general keywords.</li>
+        </ul>    
+      </div>
+      {% else %}
+        <h6 class="text-muted font-weight-bold"><i class="fa fa-sliders"></i> FILTER</h6>
+    {% endif%}
+  </div>
+  <hr>
+  <div class="row scroll">
+    {% for product in products %}
+    <div class="col-sm-3 themed-grid-col mb-3">
+      <div class="card border-0 rounded-0 card-hvr">
+        <img src="{{product.product_img.url}}" class="img-responsive" alt="product_img" width="100%" height="150px">
+        <div class="card-body p-2">
+          
+          {% if product.is_veg %}
+            <h5 class="card-title m-0">
+                <span><img class="mr-2" src="{% static 'images/veg.png' %}" alt="veg" width="12px" height="12px"></span> 
+                <span>{{product.product_name.title}}</span>
+            </h5>
+            {% else %}
+            <h5 class="card-title mb-0">
+                <span><img class="mr-2" src="{% static 'images/non-veg.png' %}" alt="veg" width="12px" height="12px"></span> 
+                <span>{{product.product_name.title}}</span>
+            </h5>
+          {% endif %}
+
+          <!-- <p class="card-text description text-muted my-0 text-truncate"><b>From</b> : {{product.created_by}}</p> -->
+          <!-- <p class="card-text description text-muted my-0 text-truncate">{{product.product_dec}}</p> -->
+          <p class="card-text description text-muted my-0 text-truncate">{{product.restaurant_name}}</p>
+          <p class="card-text description mb-1"><b>{{product.cetagory}}</b></p>
+          <div class="d-flex bd-highlight m-0 py-2 border-top">
+            <div class="mr-auto bd-highlight text-success font-weight-bold">₹{{ product.price }}</div>
+            <!-- Ratings -->
+            <!-- <div class="bd-highlight text-muted">
+              <span><i class="fa fa-star text-warning"></i></span>
+              <span><i class="fa fa-star text-warning"></i></span>
+              <span><i class="fa fa-star text-warning"></i></span>
+              <span><i class="fa fa-star"></i></span>
+              <span><i class="fa fa-star"></i></span>
+            </div> -->
+            <div class="bd-highlight">
+              <button type="button" class="btn btn-outline-light border rounded-0 text-success btn-sm text-uppercase add-to-cart"
+              data-name="{{product.product_name}}" data-price="{{product.price}}">Add</button>
+            </div>
+          </div>
+          <!-- <div class="text-left border-top pt-2">
+            <button type="button" class="btn btn-outline-warning btn-sm text-uppercase add-to-cart"
+              data-name="{{product.product_name}}" data-price="{{product.price}}">Add to Cart</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
+<!-- End Product List -->
+
+<!-- Start Cart List -->
+{% block cart %}
+<div class="col-4 d-none d-lg-block scroll">
+  <div class="card p-2 rounded-0">
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="text-muted">YOUR CART </h4>
+      <a href="/" class="clear-cart">Clear</a>
+    </div>
+    <hr>
+    <!-- If cart is empty -->
+    <!-- <img src="{% static 'images/location_empty.png' %}"> -->
+    <!-- else -->
+    <div class="show-cart">
+    </div>
+    
+    <div class="card text-success p-1 my-2 text-right">
+      <b>Total : ₹<span class="total-cart"></span>.00</b>
+    </div>
+    <button class="btn btn-dark my-0 border rounded-0" data-toggle="modal" data-target="#staticBackdrop">Order now</button>
+  </div>
+</div>
+{% endblock %}
+<!-- End Cart List -->

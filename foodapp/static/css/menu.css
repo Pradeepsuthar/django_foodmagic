@@ -41,7 +41,7 @@
 }
 
 .card .card-body .description{
-    font-size: 10px;
+    font-size: 12px;
     padding: 0;
 }
 
@@ -49,3 +49,12 @@
     font-size: 15px;
     padding: 0;
 }
+
+.hvr-link{
+    color: gray;
+  }
+  .hvr-link:hover{
+    color: #ffd700;
+  }
+
+  

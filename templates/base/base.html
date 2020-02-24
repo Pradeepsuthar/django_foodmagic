@@ -1,76 +1,268 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Menu</title>
-    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-  </head>
-  <body>
+  <!-- Favicons -->
+  <link href="{% static 'images/favicon-foodmagic.png' %}" rel="icon" />
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-foodmagic py-0">
-      <a class="navbar-brand" href="/">
-        <!-- <img src="{% static 'images/foodmagiclogo.png' %}" width="100" height="30" alt="logo"> -->
-        <h5 class="my-0 mr-md-auto font-weight-normal"><b><span class="text-white">Food</span><span
-          class="text-white">Magic</span></b></h5>
-      </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Recent Orders</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/myaccount/{{ user.profile.id }}">Account</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          </ul>
-          <span class="btn-lg"><i class="fa fa-user-circle text-white"></i></span>
-          <span class="navbar-text">
-            <p class="text-white username m-0">{{user.first_name}} {{user.last_name}}</p>
-            <p class="font-weight-lighter mobile_no m-0">{{ user.profile.phone_no }}</p>
-          </span>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <title>Online foodmagic</title>
+  <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+  <style>
+    body::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    .menu-btn:focus {
+      outline: none;
+    }
+
+    .scroll {
+      max-height: 80vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .scroll::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    .input-field:focus {
+      outline: 0;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-white py-1 border-bottom sticky-top">
+    <a class="navbar-brand" href="/">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo"
+            width="120px" height="30px"></b></h5>
+    </a>
+    <button class="navbar-toggler p-0 border-0 menu-btn" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon btn-sm"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Recent Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/myaccount/{{ user.profile.id }}">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+      <form method="get" action="/search" class="input-group w-50 border">
+
+        <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 input-field px-2"
+          name="search" value="{{ request.GET.search }}">
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary px-4 rounded-0 border-0 bg-light" type="submit" id="button-addon2"><i
+              class="fa fa-search"></i></button>
         </div>
-      </nav>
 
-      <!-- Category -->
-      {% block cetagory %}
-      {% endblock %}
-    
-    <!-- Start Body -->
-    <div class="container-fluid bg-light">
+      </form>
+      <div class="border-top d-flex bd-highlight">
+        <span class="flex-shrink-1 bd-highlight btn-lg p-2"><i class="fa fa-user-circle text-dark"></i></span>
+        <span class="navbar-text bd-highlight">
+          <p class="text-dark username m-0">{{user.first_name}} {{user.last_name}}</p>
+          <p class="font-weight-normal mobile_no m-0">{{ user.profile.phone_no }}</p>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Category navbar -->
+  {% block cetagory %}
+  {% endblock %}
+
+  <!-- Start Body -->
+  <div class="container-fluid mb-5">
     <div class="row p-2">
-      
-      <!-- Product List -->
+
+      <!-- Product List (Left) -->
       {% block content %}
       {% endblock %}
-      
-      <!-- Cart -->
+
+      <!-- Cart (Right) -->
       {% block cart %}
       {% endblock %}
-      
-    </div>
-    </div>
-    <!-- End Body -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  </body>
+    </div>
+  </div><br class="d-block d-lg-none">
+  <!-- End Body -->
+
+  <!-- Footer menu -->
+  <ul class="nav d-flex justify-content-around border-top fixed-bottom bg-white p-0 d-block d-lg-none">
+    <li class="nav-item text-center">
+      <a class="nav-link text-dark h4" href="/"><i class="fa fa-home"></i>
+        <p style="font-size: 10px;">Home</p>
+      </a>
+    </li>
+    <li class="nav-item text-center">
+      <a class="nav-link text-dark h4" href="#"><i class="fa fa-home"></i>
+        <p style="font-size: 10px;">Home</p>
+      </a>
+    </li>
+    <li class="nav-item text-center">
+      <a class="nav-link text-dark h4" href="#"><i class="fa fa-home"></i>
+        <p style="font-size: 10px;">Home</p>
+      </a>
+    </li>
+    <li class="nav-item text-center">
+      <a class="nav-link text-dark h4" href="#" data-toggle="modal" data-target="#cart"><i
+          class="fa fa-shopping-cart"></i>
+        <p style="font-size: 10px;">Cart (<span class="total-count"></span>)</p>
+      </a>
+    </li>
+    <li class="nav-item text-center">
+      <a class="nav-link text-dark h4" href="/myaccount/{{ user.profile.id }}"><i class="fa fa-user-circle"></i>
+        <p style="font-size: 10px;">Account</p>
+      </a>
+    </li>
+  </ul>
+  <!-- End Footer menu -->
+
+  <!-- Cart Modal -->
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="show-cart">
+
+          </div>
+          <div class="card text-success p-2 my-2 text-right">
+            <b>Total : ₹<span class="total-cart"></span></b>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-end">
+            <button class="clear-cart btn btn-danger mx-2">Clear Cart</button>
+            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+            <a href="/checkout/" class="btn btn-dark">Palce Oder</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Order now Model -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Checkout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="show-cart">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <a href="/checkout/" class="btn btn-dark">Palce Oder</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container d-none d-lg-block">
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="80px" height="20px"></b>
+          <small class="d-block mb-3 text-muted">&copy; 2017-2019</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="hvr-link text-decoration-none" href="#">Cool stuff</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Random feature</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Team feature</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Stuff for developers</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Another one</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="hvr-link text-decoration-none" href="#">Resource</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Resource name</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Another resource</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="hvr-link text-decoration-none" href="#">Team</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Locations</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Privacy</a></li>
+            <li><a class="hvr-link text-decoration-none" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  {% for message in messages %}
+  <input class="d-none" type="text" id="message-tags" value="{{ message.tags }}">
+  <input class="d-none" type="text" id="message" value="{{ message }}">
+  {% endfor %}
+
+  <!-- Optional JavaScript -->
+  <script>
+    function showMessage() {
+      var message_tag = document.getElementById('message-tags').value;
+      var message = document.getElementById('message').value;
+      swal("", message, message_tag);
+    }
+
+  </script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- Optional JavaScript -->
+  <script src="{% static 'js/cart.js' %}"></script>
+</body>
+
 </html>

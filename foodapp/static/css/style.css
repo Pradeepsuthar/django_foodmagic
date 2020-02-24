@@ -1,4 +1,22 @@
-.bg-mycolor{
-    background-color: red;
+.bg-mycolor-l{
+    background-color: #ffd700;
     color: #fff;
+}
+
+.bg-mycolor-d{
+    background-color: #ffd700;
+    color: #000000;
+}
+
+.text-mycolor{
+    color: #ffd700;
+}
+
+.card-hvr:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+.btn-hvr:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
+    cursor: pointer;
 }
