@@ -7,10 +7,11 @@ from django.views.generic import TemplateView
 
 # Default Home Page
 def index(request):
-    if request.session.has_key('is_login'):
-        return redirect('/products/')
-    else:
-        return render(request, 'login.html')
+    return redirect('/products/')
+
+# Testing page
+def test(request):
+    return render(request, 'test/test.html')
 
 # Login exists user  
 def loginUser(request):
@@ -75,8 +76,8 @@ class MyAccount(TemplateView):
 # Product view
 def ProductView(request):
     if request.session.has_key('is_login'):
-        products = Product.objects.order_by("-id")
-        all_cetagories = Cetagory.objects.all()
+        products = Product.objects.order_by("?")
+        all_cetagories = Cetagory.objects.order_by("?")
         return render(request, 'foodProduct/products.html',{'products':products,'all_cetagories':all_cetagories})
     else:
         return redirect('/login/')

@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+
 {% load static %}
 
 <!-- Start Category -->
@@ -20,7 +21,7 @@
 
 <!-- Start Product List -->
 {% block content %}
-<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 p-2 ">
+<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 p-2 my-0">
   <div class="p-0 d-flex justify-content-between">
     <!-- Search items -->
     {% if products|length < 1 %}
@@ -43,12 +44,13 @@
       <p class="text-muted">{{ products|length }} found for "{{search.strip}}".</p>
     </span>
     {% else %}
-    <h6 class="text-muted font-weight-bold">All Products</h6>
+    <div class="my-0">
+      <h6 class="text-muted font-weight-bold">All Products</h6>
+    </div>
     {% endif %}
     {% endif%}
   </div>
-
-  <hr>
+  <hr class="mt-2">
   <div class="row scroll">
     {% for product in products %}
     <div class="col-sm-3 themed-grid-col mb-3">

@@ -39,10 +39,9 @@
       width: 0px;
     }
 
-    .form-control:focus {
-      outline: none;
+    .input-field:focus {
+      outline: 0;
     }
-
   </style>
 
 </head>
@@ -72,26 +71,21 @@
       </ul>
 
       <form method="get" action="/search" class="input-group w-50 border">
-        <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 px-2"
+        <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 input-field px-2"
           name="search" value="{{ request.GET.search }}" required>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary px-4 rounded-0 border-0 bg-light" type="submit" id="button-addon2"><i
               class="fa fa-search"></i></button>
         </div>
       </form>
-      {% if user.is_authenticated %}
-        <div class="border-top d-flex bd-highlight" title="My Account">
-          <span class="flex-shrink-1 bd-highlight btn-lg p-2"><i class="fa fa-user-circle text-dark"></i></span>
-          <span class="navbar-text bd-highlight">
-            <p class="text-dark username m-0"><a href="/myaccount/{{ user.profile.id }}">{{user.first_name}} {{user.last_name}}</a></p>
-            <p class="font-weight-normal mobile_no m-0">{{ user.profile.phone_no }}</p>
-          </span>
-        </div>
-      {% else %}
-      <div class="border-top d-flex bd-highlight mx-3">
-        <a class="btn btn-light border rounded-0 text-dark btn-sm text-uppercase" href="#" role="button">Login</a>
+      
+      <div class="border-top d-flex bd-highlight">
+        <span class="flex-shrink-1 bd-highlight btn-lg p-2"><i class="fa fa-user-circle text-dark"></i></span>
+        <span class="navbar-text bd-highlight">
+          <p class="text-dark username m-0">{{user.first_name}} {{user.last_name}}</p>
+          <p class="font-weight-normal mobile_no m-0">{{ user.profile.phone_no }}</p>
+        </span>
       </div>
-      {% endif %}
     </div>
   </nav>
 
@@ -112,19 +106,45 @@
   {% endblock %}
 
 
+  
+  <div class="jumbotron rounded-0 m-0 text-left text-white" style="background-image: url('https://cdn.pixabay.com/photo/2017/02/15/10/39/salad-2068220_960_720.jpg');background-size: cover;background-repeat: no-repeat;">
+    <!-- <img class="img-fluid" src="https://www.uberclone.co/wp-content/uploads/2020/01/swiggy.jpg" alt=""> -->
+
+    <h1>Hello, world!</h1>
+    <div class="my-3 p-0">
+     <p class="text-white my-0">It uses utility classes for typography and spacing to space content.</p>
+     <p class="text-white my-0">Muted text with aIt uses utility classes for typography.</p>
+     <p class="text-white my-0">Muted text with aIt uses utility classes.</p>
+    </div>
+
+
+<a class="btn btn-light border rounded-0 text-dark btn-sm text-uppercase" href="#" role="button">Learn more</a>
+</div>
+
+
   <!-- Start Body -->
   <div class="container-fluid mb-5">
-    <div class="row p-2">
 
-      <!-- Product List (Left) -->
-      {% block content %}
-      {% endblock %}
 
-      <!-- Cart (Right) -->
-      {% block cart %}
-      {% endblock %}
+    <!-- Start Edit Body Part -->
 
-    </div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+    <!-- End Edit Body Part -->
+
+
+   
   </div><br class="d-block d-lg-none">
   <!-- End Body -->
 
