@@ -39,8 +39,8 @@
       width: 0px;
     }
 
-    .form-control:focus {
-      outline: none;
+    .input-group:focus {
+      outline: 0;
     }
 
   </style>
@@ -49,7 +49,7 @@
 
 <body>
   <!-- Top Navbar -->
-  <nav class="navbar navbar-expand-md navbar-light bg-white py-1 border-bottom sticky-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-white py-1 border-bottom ">
     <a class="navbar-brand" href="/">
       <h5 class="my-0 mr-md-auto font-weight-normal"><b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo"
             width="120px" height="30px"></b></h5>
@@ -72,8 +72,7 @@
       </ul>
 
       <form method="get" action="/search" class="input-group w-50 border">
-        <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 px-2"
-          name="search" value="{{ request.GET.search }}" required>
+        <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 px-2" name="search" value="{{ request.GET.search }}" required>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary px-4 rounded-0 border-0 bg-light" type="submit" id="button-addon2"><i
               class="fa fa-search"></i></button>
@@ -96,7 +95,7 @@
   </nav>
 
   <!-- Mobile search box -->
-  <div class="container p-2 d-block d-lg-none">
+  <div class="container p-2 bg-white d-block d-lg-none sticky-top">
     <form method="get" action="/search" class="input-group w-100 border">
       <input type="search" placeholder="Search" aria-label="Search" class="form-control border-0 input-field px-2"
         name="search" value="{{ request.GET.search }}" required>
@@ -112,8 +111,11 @@
   {% endblock %}
 
 
+
+
   <!-- Start Body -->
   <div class="container-fluid mb-5">
+
     <div class="row p-2">
 
       <!-- Product List (Left) -->
@@ -125,44 +127,61 @@
       {% endblock %}
 
     </div>
-  </div><br class="d-block d-lg-none">
+  </div>
   <!-- End Body -->
 
   <!-- Footer menu -->
-  <ul class="nav d-flex justify-content-around border-top fixed-bottom bg-white p-0 d-block d-lg-none">
-    <li class="nav-item text-center">
-      <a class="nav-link text-dark h4" href="/"><i class="fa fa-home"></i>
-        <p style="font-size: 10px;">Home</p>
-      </a>
-    </li>
-    <li class="nav-item text-center">
-      <a class="nav-link text-dark h4" href="#"><i class="fa fa-home"></i>
-        <p style="font-size: 10px;">Home</p>
-      </a>
-    </li>
-    <li class="nav-item text-center">
-      <a class="nav-link text-dark h4" href="#"><i class="fa fa-home"></i>
-        <p style="font-size: 10px;">Home</p>
-      </a>
-    </li>
-    <li class="nav-item text-center">
-      <a class="nav-link text-dark h4" href="#" data-toggle="modal" data-target="#cart"><i
-          class="fa fa-shopping-cart"></i>
-        <p style="font-size: 10px;">Cart (<span class="total-count"></span>)</p>
-      </a>
-    </li>
-    <li class="nav-item text-center">
-      <a class="nav-link text-dark h4" href="/myaccount/{{ user.profile.id }}"><i class="fa fa-user-circle"></i>
-        <p style="font-size: 10px;">Account</p>
-      </a>
-    </li>
-  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer py-2 fixed-bottom bg-white border-top d-block d-lg-none">
+        <div class="container">
+            <ul class="nav d-flex justify-content-around">
+                <li class="nav-item text-center">
+                  <a class="nav-link py-0 my-0" href="/" role="tab"><span class="bottom-nav-links active"><i class="fa fa-home"></i><br>Home</span></a>
+                </li>
+                <li class="nav-item text-center">
+                  <a class="nav-link py-0 my-0" href="#" data-toggle="modal" data-target="#cart"><span class="bottom-nav-links"><i class="fa fa-shopping-cart"></i><br>Cart (<span class="total-count"></span>)</span></a>
+                </li>
+                <li class="nav-item text-center">
+                  <a class="nav-link py-0 my-0" href="/myaccount/{{ user.profile.id }}"><span class="bottom-nav-links"><i class="fa fa-user"></i><br>Account</span></a>
+                </li>
+              </ul>
+        </div>
+      </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- End Footer menu -->
 
   <!-- Cart Modal -->
   <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
+      <div class="modal-content rounded-0">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
