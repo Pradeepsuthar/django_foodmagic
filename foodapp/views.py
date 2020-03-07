@@ -4,6 +4,8 @@ from django.contrib.auth.models import User, auth
 from .models import Profile, Cetagory, Product, Restaurant, Order
 from django.contrib.sessions.models import Session
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Default Home Page
 def index(request):
@@ -74,6 +76,7 @@ class MyAccount(TemplateView):
 
 
 # Product view
+@login_required(login_url='/login/')
 def ProductView(request):
     if request.session.has_key('is_login'):
         products = Product.objects.order_by("?")
@@ -84,6 +87,7 @@ def ProductView(request):
 
 
 # Search
+@login_required(login_url='/login/')
 def search(request):
     if request.session.has_key('is_login'):
         search_item = request.GET.get('search')
@@ -100,6 +104,7 @@ def search(request):
 
 
 # Checkout
+@login_required(login_url='/login/')
 def checkout(request):
     if request.session.has_key('is_login'):
         if request.method=="POST":
@@ -126,6 +131,7 @@ def checkout(request):
 
 
 # Edit Profile
+@login_required(login_url='/login/')
 def editProfile(request):
     if request.session.has_key('is_login'):
         if request.method=='POST':
@@ -154,6 +160,7 @@ def editProfile(request):
     
 
 # Change Password
+@login_required(login_url='/login/')
 def changePassword(request):
     if request.session.has_key('is_login'):
         if request.method=='POST':
@@ -177,6 +184,7 @@ def changePassword(request):
 
 
 # Logout user from dashboard
+@login_required(login_url='/login/')
 def logout(request):
     if request.session.has_key('is_login'):
         auth.logout(request)
