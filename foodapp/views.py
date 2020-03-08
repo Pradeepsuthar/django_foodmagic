@@ -86,6 +86,18 @@ def ProductView(request):
         return redirect('/login/')
 
 
+
+# Product Detail view
+@login_required(login_url='/login/')
+def productDetails(request):
+    if request.session.has_key('is_login'):
+        products = Product.objects.order_by("?")
+        all_cetagories = Cetagory.objects.order_by("?")
+        return render(request, 'foodProduct/productDetails.html',{'products':products,'all_cetagories':all_cetagories})
+    else:
+        return redirect('/login/')    
+
+
 # Search
 @login_required(login_url='/login/')
 def search(request):
