@@ -30,12 +30,14 @@ class ProductAdmin(ModelAdmin):
     list_filter = ["cr_date"]
 admin.site.register(Product, ProductAdmin)
 
-admin.site.register(Cetagory)
+class CetagoryAdmin(ModelAdmin):
+    list_display = ["id", "cetagory_name"]
+admin.site.register(Cetagory, CetagoryAdmin)
 
 class RestaurantAdmin(ModelAdmin):
-    list_display = ["restaurant_name", "restaurant_owner", "restaurant_owner_phone_no", "restaurant_address", "cr_date"]
     search_fields = ["restaurant_name", "restaurant_address"]
     list_filter = ["cr_date"]
+    fieldsets = [("Restaurant Details", {"fields": ["restaurant_name", "restaurant_owner", "restaurant_owner_phone_no", "restaurant_address", "mini_order_price"]})]
 admin.site.register(Restaurant, RestaurantAdmin)
 
 class OrderAdmin(ModelAdmin):

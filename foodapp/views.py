@@ -89,11 +89,23 @@ def ProductView(request):
 
 # Product Detail view
 @login_required(login_url='/login/')
-def productDetails(request):
+def productDetails(request, id):
     if request.session.has_key('is_login'):
-        products = Product.objects.order_by("?")
+        product = Product.objects.filter(id=id)
         all_cetagories = Cetagory.objects.order_by("?")
-        return render(request, 'foodProduct/productDetails.html',{'products':products,'all_cetagories':all_cetagories})
+        return render(request, 'foodProduct/productDetails.html',{'product':product[0],'all_cetagories':all_cetagories})
+    else:
+        return redirect('/login/')    
+
+# Product Detail view
+@login_required(login_url='/login/')
+def productCetagory(request, id, cetagory_name):
+    if request.session.has_key('is_login'):
+        all_cetagories = Cetagory.objects.order_by("?")
+        products = Product.objects.filter(cetagory=id).order_by("?")
+
+
+        return render(request, 'foodProduct/cetagory.html',{'id':id,'productCetagory':cetagory_name,'products':products,'all_cetagories':all_cetagories})
     else:
         return redirect('/login/')    
 

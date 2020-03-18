@@ -23,10 +23,28 @@ class Restaurant(models.Model):
     restaurant_name = models.CharField(max_length=400)
     restaurant_address = models.CharField(default="", max_length=100)
     restaurant_owner =  models.OneToOneField(to=User, on_delete = CASCADE)
-    cr_date = models.DateTimeField(auto_now_add=True)
     restaurant_owner_phone_no = models.CharField(default="",validators=[RegexValidator("^0?[5-9]{1}\d{9}$")], max_length=10)
+    mini_order_price = models.IntegerField(default=0, validators=[MinValueValidator(0),MaxValueValidator(10000)])
+    cr_date = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return "%s" % (self.restaurant_name)
+
+class ProductManager(models.Manager):
+    def search_product(self, keyword):
+        return self.filter(product_name__icontains=keyword)
+
+    def get_queryset(self):
+        return super().get_queryset()
+    
+    def all_veg_products(self):
+        return super().get_queryset().filter(is_veg=True)
+
+    def all_nonveg_products(self):
+        return super().get_queryset().filter(is_veg=False)
+
+    def all_veg_products(self):
+        return super().get_queryset().filter(is_veg=True)
 
 class Product(models.Model):
     product_img = models.ImageField(upload_to = "images\\product-img\\", null=True)
@@ -38,8 +56,11 @@ class Product(models.Model):
     cetagory = models.ForeignKey(to=Cetagory, on_delete = CASCADE, null=True, blank=True)
     restaurant_name = models.ForeignKey(to=Restaurant, on_delete = CASCADE, null=True, blank=True)
     is_veg = models.BooleanField(default=True)
+    
     def __str__(self):
         return "%s" % (self.product_name)
+    
+    objects = ProductManager()
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)

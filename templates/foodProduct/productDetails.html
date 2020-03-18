@@ -2,41 +2,115 @@
 
 {% load static %}
 
+<!-- Start Category -->
+{% block cetagory %}
+<div class="nav-scroller shadow-sm">
+  <nav class="nav d-flex justify-content-between p-2">
+    <div class="border bg-dark py-0 px-2" style="border-radius: 30px;">
+      <a class="text-white text-decoration-none" href="/products/">All</a>
+    </div>
+    {% for cet in all_cetagories %}
+    <div class="border bg-light py-0 px-2 mx-1" style="border-radius: 30px;">
+      <a class="text-muted text-decoration-none" href="/product_cetagory/{{cet.id}}/{{cet.cetagory_name}}">{{cet.cetagory_name}}</a>
+    </div>
+    {% endfor %}
+  </nav>
+</div>
+{% endblock %}
+<!-- End Category -->
+
+
+
 <!-- Start Product List -->
 {% block content %}
 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 p-2 my-0">
-  <div class="p-0 d-flex justify-content-between">
-    <!-- Search items -->
-    {% if products|length < 1 %}
-    <div class="container p-2">
-      <p class="font-weight-bold">No Search Results :-</p>
-      <hr>
-      <p>Your search - <span class="font-weight-bold">{{search}}</span> - is not available sorry please search another
-        item.</p>
-      <p>Suggestions:</p>
-      <ul>
-        <li>Make sure that all words are spelled correctly.</li>
-        <li>Try different keywords.</li>
-        <li>Try more general keywords.</li>
-      </ul>
+    <div class="p-0 d-flex justify-content-between">
+        <!-- Search items -->
+
+
+        <div class="my-0">
+            <a href="javascript:history.back()" class="text-muted font-weight-bold text-decoration-none"><span><i class="fa fa-arrow-left"></i></span> <span>Back</span></a>
+        </div>
+
     </div>
-    {% else %}
-    {% if search|length >= 1 %}
-    <span>
-      <h6 class="text-muted font-weight-bold"><i class="fa fa-sliders"></i> FILTER</h6>
-      <p class="text-muted">{{ products|length }} found for "{{search.strip}}".</p>
-    </span>
-    {% else %}
-    <div class="my-0">
-      <a href="/products/" class="text-muted font-weight-bold text-decoration-none"><i class="fa fa-arrow-left"></i></a>
+    <hr class="mt-2">
+    <div class="row scroll p-2">
+
+
+
+        <!-- <div class="card border-0 rounded-0">
+            <img src="{{product.product_img.url}}" class="img-responsive" alt="product_img" width="100%" height="auto">
+            <div class="card-body p-2">
+
+                {% if product.is_veg %}
+                <h5 class="card-title m-0">
+                    <span><img class="mr-2" src="{% static 'images/veg.png' %}" alt="veg" width="12px"
+                            height="12px"></span>
+                    <span>{{product.product_name.title}}</span>
+                </h5>
+                {% else %}
+                <h5 class="card-title mb-0">
+                    <span><img class="mr-2" src="{% static 'images/non-veg.png' %}" alt="veg" width="12px"
+                            height="12px"></span>
+                    <span>{{product.product_name.title}}</span>
+                </h5>
+                {% endif %}
+                <p class="card-text description text-muted my-0 text-truncate">{{product.restaurant_name}}</p>
+                <p class="card-text description mb-1"><b>{{product.cetagory}}</b></p>
+                <div class="d-flex bd-highlight m-0 py-2 border-top">
+                    <div class="mr-auto bd-highlight text-success font-weight-bold">₹{{ product.price }}</div>
+                    <div class="bd-highlight">
+                        <button type="button"
+                            class="btn btn-outline-light border rounded-0 text-success btn-sm text-uppercase add-to-cart"
+                            data-name="{{product.product_name}}" data-price="{{product.price}}">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+
+        <div class="card mb-3 border-0">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{product.product_img.url}}" class="card-img rounded-0" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body pt-0">
+                        {% if product.is_veg %}
+                        <h5 class="card-title m-0">
+                            <span><img class="mr-2 mb-3" src="{% static 'images/veg.png' %}" alt="veg" width="15px"
+                                    height="15px"></span>
+                            <span class="h3">{{product.product_name.title}}</span>
+                        </h5>
+                        {% else %}
+                        <h5 class="card-title mb-0">
+                            <span><img class="mr-2 mb-3" src="{% static 'images/non-veg.png' %}" alt="veg" width="15px"
+                                    height="15px"></span>
+                            <span class="h3">{{product.product_name.title}}</span>
+                        </h5>
+                        {% endif %}
+                        <p class="card-text description text-muted my-0 text-truncate h4">{{product.restaurant_name}}</p>
+                        <p class="card-text description my-2 h4"><b>{{product.cetagory}}</b></p>
+                        <p class="card-text description my-2 h4">{{product.product_dec}}</p>
+                        <div class="d-flex bd-highlight m-0 py-2 border-top">
+                            <div class="mr-auto bd-highlight text-success font-weight-bold h4">₹{{ product.price }}</div>
+                            <div class="bd-highlight">
+                                <button type="button"
+                                    class="btn btn-light border rounded-0 text-success btn-md text-uppercase add-to-cart"
+                                    data-name="{{product.product_name}}" data-price="{{product.price}}">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
-    {% endif %}
-    {% endif%}
-  </div>
-  <hr class="mt-2">
-  <div class="row scroll p-2">
-    product Detail
-  </div>
 
 </div>
 {% endblock %}
@@ -47,27 +121,27 @@
 <div class="col-4 d-none d-lg-block scroll">
 
     <div class="container-fluid p-0 my-3">
-        <img src="https://lh3.googleusercontent.com/Mcg3y5l6esHkG5jE16t_cegxz1CwvZ3O_qqSBUV3z6fO1g-F_dAsZHLhc6jjw7CLsMsSwAI2t4cu6l8DrDXT4NmlH9v3_BNlCTNNKkdlU_S9wCqBCI2--3RLCs_BvIZH0_WX48XIXNhRZwe3ELYB3SQxQJGv3i5koa1AgTCE_qdwkfPMq7j5-dyWpU_37MW1cLlA9Kb13MgJXjAkFSqTa4BWv386yeXPE2n0AjvTN_eq19Ms7ZN-_xiFgy1jOqxDZB1zsKFcPYJYblOUUP90-fkVrHiz8lytpZYxdUKUjQPAm20lNZBxTzMn0qWF9-X3i29ruyZUeKgHzneRrMG-KlWk9nshKv7wC2NQSApn8NEOOfgGNso1xyvSNw12-8TD-dWQJL6KceI-sjo5pz4tGqKFIdSiZuranOXSjMeauFKJwCPYWAqeNfGvq5x4QNc7qM6KR8arCIxua3_qjYz1MBDJY12FKKW-QKV3QuHSvtym-OnJ7GkiURfoWBztp1uR9WIfKhUm4t-Xf933d0N0lmpUI4Ll6fInllh8QJi8CtdUy7JGklstsETT-PexX6LjWZwgII-sLaDPuUUwVOnTOzT33q268k8MICVEXOebxqMhtycwa57yAUztzGvXUkJQK1kupzvZuidnnkphzBZwwsES5zezn3viN-Qs5PGTahM8-L7xb3SeOSOV7JsN2L2Blc0uAqZHsnXjDCOi4hGnvrqsYCyZq-VkZx-PwBd3-TTSW3E=w1001-h667-no" width="100%" height="auto">
+        <img src="{% static 'images/food-banner.png' %}" width="100%" height="auto">
     </div>
 
-  <div class="card p-2 rounded-0">
-    <div class="d-flex w-100 justify-content-between">
-      <h4 class="text-muted">YOUR CART </h4>
-      <a href="/" class="clear-cart">Clear</a>
-    </div>
-    <hr>
-    <!-- If cart is empty -->
-    <!-- <img src="{% static 'images/location_empty.png' %}"> -->
-    <!-- else -->
-    <div class="show-cart">
-    </div>
+    <div class="card p-2 rounded-0">
+        <div class="d-flex w-100 justify-content-between">
+            <h4 class="text-muted">YOUR CART </h4>
+            <a href="/" class="clear-cart">Clear</a>
+        </div>
+        <hr>
+        <!-- If cart is empty -->
+        <!-- <img src="{% static 'images/location_empty.png' %}"> -->
+        <!-- else -->
+        <div class="show-cart">
+        </div>
 
-    <div class="card text-success p-1 my-2 text-right">
-      <b>Total : ₹<span class="total-cart"></span>.00</b>
+        <div class="card text-success p-1 my-2 text-right">
+            <b>Total : ₹<span class="total-cart"></span>.00</b>
+        </div>
+        <button class="btn btn-dark my-0 border rounded-0" data-toggle="modal" data-target="#staticBackdrop">Order
+            now</button>
     </div>
-    <button class="btn btn-dark my-0 border rounded-0" data-toggle="modal" data-target="#staticBackdrop">Order
-      now</button>
-  </div>
 
 
 </div>

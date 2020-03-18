@@ -4,18 +4,18 @@
 
 <!-- Start Category -->
 {% block cetagory %}
-<!-- <div class="nav-scroller shadow-sm">
+<div class="nav-scroller shadow-sm">
   <nav class="nav d-flex justify-content-between p-2">
     <div class="border bg-dark py-0 px-2" style="border-radius: 30px;">
-      <a class="text-white text-decoration-none" href="#">All</a>
+      <a class="text-white text-decoration-none" href="/products/">All</a>
     </div>
     {% for cet in all_cetagories %}
     <div class="border bg-light py-0 px-2 mx-1" style="border-radius: 30px;">
-      <a class="text-muted text-decoration-none" href="#">{{cet.cetagory_name}}</a>
+      <a class="text-muted text-decoration-none" href="/product_cetagory/{{cet.id}}/{{cet.cetagory_name}}">{{cet.cetagory_name}}</a>
     </div>
     {% endfor %}
   </nav>
-</div> -->
+</div>
 {% endblock %}
 <!-- End Category -->
 
@@ -54,7 +54,7 @@
   <div class="row scroll">
     {% for product in products %}
     <div class="col-sm-3 themed-grid-col mb-3">
-      <a class="text-decoration-none text-dark" href="/product_details/">
+      <a class="text-decoration-none text-dark" href="/product_details/{{product.id}}">
         <div class="card border-0 rounded-0 card-hvr">
           <img src="{{product.product_img.url}}" class="img-responsive" alt="product_img" width="100%" height="150px">
           <div class="card-body p-2">
@@ -111,7 +111,7 @@
 <div class="col-4 d-none d-lg-block scroll">
 
     <div class="container-fluid p-0 my-3">
-        <img src="https://lh3.googleusercontent.com/Mcg3y5l6esHkG5jE16t_cegxz1CwvZ3O_qqSBUV3z6fO1g-F_dAsZHLhc6jjw7CLsMsSwAI2t4cu6l8DrDXT4NmlH9v3_BNlCTNNKkdlU_S9wCqBCI2--3RLCs_BvIZH0_WX48XIXNhRZwe3ELYB3SQxQJGv3i5koa1AgTCE_qdwkfPMq7j5-dyWpU_37MW1cLlA9Kb13MgJXjAkFSqTa4BWv386yeXPE2n0AjvTN_eq19Ms7ZN-_xiFgy1jOqxDZB1zsKFcPYJYblOUUP90-fkVrHiz8lytpZYxdUKUjQPAm20lNZBxTzMn0qWF9-X3i29ruyZUeKgHzneRrMG-KlWk9nshKv7wC2NQSApn8NEOOfgGNso1xyvSNw12-8TD-dWQJL6KceI-sjo5pz4tGqKFIdSiZuranOXSjMeauFKJwCPYWAqeNfGvq5x4QNc7qM6KR8arCIxua3_qjYz1MBDJY12FKKW-QKV3QuHSvtym-OnJ7GkiURfoWBztp1uR9WIfKhUm4t-Xf933d0N0lmpUI4Ll6fInllh8QJi8CtdUy7JGklstsETT-PexX6LjWZwgII-sLaDPuUUwVOnTOzT33q268k8MICVEXOebxqMhtycwa57yAUztzGvXUkJQK1kupzvZuidnnkphzBZwwsES5zezn3viN-Qs5PGTahM8-L7xb3SeOSOV7JsN2L2Blc0uAqZHsnXjDCOi4hGnvrqsYCyZq-VkZx-PwBd3-TTSW3E=w1001-h667-no" width="100%" height="auto">
+      <img src="{% static 'images/food-banner.png' %}" width="100%" height="auto">
     </div>
 
   <div class="card p-2 rounded-0">
