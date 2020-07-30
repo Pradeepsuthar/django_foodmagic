@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block head_title %} {{title}} {% endblock %}
+
+
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock navbar %}
+
+{% block main_body %}
+
+<div class="container my-2">
+    <h3>My Profile</h3><hr>
+    <div class="jumbotron jumbotron-fluid bg-white border">
+        <div class="container">
+           <div class="text-center">
+            <img src="/static/images/avtar.png" alt="avtar" width="100" height="100" class="rounded-circle">
+            <h1 class="h5">{{request.user}}</h1>
+            <p>+91-{{request.user.mobile}} | {{request.user.email}}</p>
+           </div>
+        </div>
+      </div>
+      <h3>Manage Address</h3><hr>
+      <div class="jumbotron jumbotron-fluid bg-white border-0 pt-3 pb-0 mb-0">
+           <div class="container text-left d-flex justify-content-between">
+              {% for address in address %}
+              <div class="card border-secondary mb-3 shadow-sm" style="max-width: 18rem; height: auto;">
+                <div class="card-header bg-transparent border-secondary">Default: <b><img src="/static/images/foodmagiclogo.png" alt="logo" width="70px" height="15px"></b></div>
+                <div class="card-body text-dark py-2">
+                  <h5 class="card-title">{{request.user}}</h5>
+                  <p class="card-text">
+                    {{address.area}}
+                    <span>{{address.district}}</span>, <span>{{address.state}}</span> <span>{{address.pincode}}</span> <span>India</span>
+                  </p>
+                </div>
+                <div class="card-footer bg-transparent border-secondary">
+                  <p class="my-0">Phone number: <span>{{request.user.mobile}}</span></p>
+                </div>
+              </div>
+              {% endfor %}           
+           </div>
+      </div>
+
+      <div class="jumbotron jumbotron-fluid bg-white border-0 pt-2 pb-0 mt-0">
+           <div class="container text-left d-flex justify-content-between">
+             <address>               
+                  <form method="POST" action="/home/changeaddress/">{% csrf_token %}
+                    <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <input type="text" class="input-filed" id="inputAddress" placeholder="Geetanjali Institute of Technical Studies, Dabok" name="area">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputCity">City/District/Town</label>
+                        <input type="text" class="input-filed" id="inputCity" name="city" placeholder="Udaipur">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <input type="text" class="input-filed" id="inputState" name="state" placeholder="Rajasthan">
+                      </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputPinCode">Pincode</label>
+                        <input type="text" class="input-filed" id="inputPinCode" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6" name="pincode" placeholder="303122">
+                      </div>
+                    </div>
+                   
+                    <button type="submit" class="btn-block btn btn-md btn-outline rounded-0">Save</button>
+                  </form>
+             </address>
+      </div>
+</div>
+
+{% endblock %}

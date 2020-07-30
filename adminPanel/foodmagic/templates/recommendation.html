@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %} {{title}} {% endblock %}
+
+
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock navbar %}
+
+{% block main_body %}
+
+<div class="container my-2">
+    <h3>Recommendation</h3><hr>
+
+    {{api_data}}
+
+
+    <br><br>
+    url : <span>{{url}}</span>
+
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+{% block head_title %} {{title}} {% endblock %}
+
+{% block main_body %}
+
+
+
+<div class="container text-center">
+  <form method="POST">
+    {% csrf_token %}
+    <h1 class="h4 mb-3 font-weight-normal">Verify OTP</h1><hr>
+    <div class="text-left">
+        <p>A One Time Password (OTP) has been sent to your Mobile Number <b>8440077147</b></p>
+    </div>
+
+    <div class="form-group text-left">
+      <input type="text" class="input-filed" placeholder="Enter OTP" id="otp" maxlength="4" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  name="otp"
+        required autofocus>
+      <span class="text-danger">{{wrong_otp}}</span>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-md btn-primary btn-block rounded-0" type="submit" id="submit">Confrim</button>
+    </div>
+  </form>
+
+</div>
+
+{% endblock %}
+
+
+{% include "footer.html" %}

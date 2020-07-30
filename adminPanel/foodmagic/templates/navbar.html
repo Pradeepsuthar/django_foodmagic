@@ -1,0 +1,52 @@
+{% load static %}
+<!-- Top Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <a class="navbar-brand" href="/">
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            <b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="120px" height="30px"></b>
+        </h5>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+      </ul>
+      <a class="text-dark text-decoration-none" href="/logout/">Logout</a>
+    </div>
+  </nav> -->
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom d-flex justify-content-between px-4">
+    <div class="text-center">
+        <a class="navbar-brand" href="/home/">
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+                <b><img src="{% static 'images/foodmagiclogo.png' %}" alt="logo" width="120px" height="30px"></b>
+            </h5>
+        </a>
+    </div>
+    <div class="w-50">
+        <form method="get" action="/home/search/" class="input-group input-group-sm border">
+            <input type="search" placeholder="Search" aria-label="Search" class="form-control input-filed border-0 input-field px-2"
+            name="search" value="{{ request.GET.search }}" required>
+            <div class="input-group-prepend">
+              <button class="btn btn-light btn-sm border px-4" type="submit" id="button-addon2" title="Search"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+    </div>
+    
+
+    <div class="text-center">
+        <a class="btn btn-light border rounded-0" href="/logout/">Logout</a>
+    </div>
+    
+  </nav>

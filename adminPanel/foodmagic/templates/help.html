@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block head_title %} {{title}} {% endblock %}
+
+
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock navbar %}
+
+{% block main_body %}
+
+<div class="container my-2">
+  <h3 id="lists">Help</h3>
+  <hr>
+
+  <p>All lists—<code class="highlighter-rouge">&lt;ul&gt;</code>, <code class="highlighter-rouge">&lt;ol&gt;</code>, and
+    <code class="highlighter-rouge">&lt;dl&gt;</code>—have their <code class="highlighter-rouge">margin-top</code>
+    removed and a <code class="highlighter-rouge">margin-bottom: 1rem</code>. Nested lists have no <code
+      class="highlighter-rouge">margin-bottom</code>.</p>
+
+  <div class="bd-example">
+
+
+    <ul>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Consectetur adipiscing elit</li>
+      <li>Integer molestie lorem at massa</li>
+      <li>Facilisis in pretium nisl aliquet</li>
+      <li>Nulla volutpat aliquam velit
+        <ul>
+          <li>Phasellus iaculis neque</li>
+          <li>Purus sodales ultricies</li>
+          <li>Vestibulum laoreet porttitor sem</li>
+          <li>Ac tristique libero volutpat at</li>
+        </ul>
+      </li>
+      <li>Faucibus porta lacus fringilla vel</li>
+      <li>Aenean sit amet erat nunc</li>
+      <li>Eget porttitor lorem</li>
+    </ul>
+
+    <ol>
+      <li>Lorem ipsum dolor sit amet</li>
+      <li>Consectetur adipiscing elit</li>
+      <li>Integer molestie lorem at massa</li>
+      <li>Facilisis in pretium nisl aliquet</li>
+      <li>Nulla volutpat aliquam velit</li>
+      <li>Faucibus porta lacus fringilla vel</li>
+      <li>Aenean sit amet erat nunc</li>
+      <li>Eget porttitor lorem</li>
+    </ol>
+
+  </div>
+
+
+
+  <ul class="list-unstyled">
+    <li class="media">
+      <img
+        src="https://b.zmtcdn.com/data/user_profile_pictures/c47/92d231910ae67ace3c7e6ed6e362cc47.jpg?fit=around%7C400%3A400&crop=400%3A400%3B%2A%2C%2A"
+        class="mr-3 img-thumbnail" alt="..." width="120px" height="120px">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">List-based media object</h5>
+        Cras sit amet nibh libero, in gravida nulla. Nulla vel.
+      </div>
+    </li>
+    <li class="media my-4">
+      <img
+        src="https://b.zmtcdn.com/data/user_profile_pictures/c47/92d231910ae67ace3c7e6ed6e362cc47.jpg?fit=around%7C400%3A400&crop=400%3A400%3B%2A%2C%2A"
+        class="mr-3 img-thumbnail" alt="..." width="120px" height="120px">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">List-based media object</h5>
+        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus.
+      </div>
+    </li>
+    <li class="media">
+      <img
+        src="https://b.zmtcdn.com/data/user_profile_pictures/c47/92d231910ae67ace3c7e6ed6e362cc47.jpg?fit=around%7C400%3A400&crop=400%3A400%3B%2A%2C%2A"
+        class="mr-3 img-thumbnail" alt="..." width="120px" height="120px">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">List-based media object</h5>
+        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus.
+      </div>
+    </li>
+  </ul>
+
+</div>
+
+{% endblock %}

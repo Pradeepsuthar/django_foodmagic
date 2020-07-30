@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block head_title %} {{title}} {% endblock %}
+
+{% block main_body %}
+
+
+
+<div class="container text-center center-in-div">
+
+  <div class="text-center">
+    <form method="POST">
+      {% csrf_token %}
+      <img class="mb-2" src="/static/images/favicon-foodmagic.png" alt="" width="100" height="75">
+      <h1 class="h4 mb-3 font-weight-normal">Sign In to FoodMagic</h1><hr> 
+  
+      <div class="form-group text-left">
+        <input type="text" class="input-filed" placeholder="Registered FoodMagic Mobile Number" id="mobile" min="1" max="10"
+          ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="mobile_number"
+          required>
+        <span id="mobileError"></span>
+      </div>
+     
+      <div class="form-group text-left">
+        <input type="password" class="input-filed" placeholder="Password" title="Password must be 4-20 characters"
+          id="pass" minlength="4" name="password" required>
+        <span id="passError"></span>
+      </div>
+  
+      <div class="text-center">
+        <button class="btn-block btn btn-sm btn-outline rounded-0" type="submit" id="submit">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="text-center my-3">
+    <span class="my-0">Don't have an account?</span><a class="text-decoration-none" href="/signUp/">
+        Create New Account</a><br>
+    <a class="text-decoration-none" href="password_reset">Forgot Password ?</a>
+</div>
+</div>
+
+{% endblock %}
+
+{% include "footer.html" %}

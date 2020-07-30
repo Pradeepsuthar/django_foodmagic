@@ -1,0 +1,119 @@
+.bg-body{
+  background-color: #F6F8F9;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.scroll {
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 0px;
+}
+
+.input-group:focus {
+    outline: 0;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+ /* Input Filed */
+ .input-filed{
+    width: 100%;
+    height: 30px;
+    padding: 20px;
+    font-size: 15px;
+    border: 1px solid lightgray;
+    border-radius: 0;
+    background-color: #ffffff;
+    
+}
+
+.input-filed:focus{
+    outline: 0;
+    background-color: #fff;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(40, 40, 41, 0.1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 51, 51, 0.1);
+}
+
+.card .card-body .description{
+  font-size: 12px;
+  padding: 0;
+}
+
+.card .card-body .card-title{
+  font-size: 15px;
+  padding: 0;
+}
+
+.hvr-link{
+  color: gray;
+}
+.hvr-link:hover{
+  color: #ffd700;
+}
+
+.card-hvr:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}.btn-outline{
+  border: 1px solid #ffd700;
+  border: 1px solid #fff;
+  background-color: #ffd700;
+  color: #fff;
+  border-radius: 0;
+}
+.btn-outline:hover{
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  border-radius: 0;
+  background-color: #fff;
+}
+.btn-outline:focus{
+  outline: none;
+}
+
+.center-in-div{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
