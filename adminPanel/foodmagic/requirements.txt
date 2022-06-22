@@ -28,7 +28,7 @@ Jinja2==2.10.1
 lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
-numpy==1.18.4
+numpy==1.22.0
 pandas==1.0.4
 Pillow==6.2.2
 pipenv==2020.6.2
